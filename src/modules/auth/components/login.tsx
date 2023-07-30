@@ -14,11 +14,15 @@ import { Icons } from "@/components/ui/icons";
 type LoginProps = {
     showLoginPage: boolean;
     setShowLoginPage: (showLoginPage: boolean) => void;
-}
+};
 
-export default function Login({showLoginPage, setShowLoginPage}: LoginProps) {
+export default function Login({ showLoginPage, setShowLoginPage }: LoginProps) {
     return (
-        <div className={`flex-1 justify-start ${!showLoginPage && "hidden lg:flex" }`}>
+        <div
+            className={`flex-1 justify-start ${
+                !showLoginPage && "hidden lg:flex"
+            }`}
+        >
             <Card className="z-[2] w-full lg:w-full">
                 <CardHeader className="space-y-1">
                     <CardTitle className="text-2xl gap-2">

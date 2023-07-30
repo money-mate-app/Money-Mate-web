@@ -14,7 +14,9 @@ export const LoginInfoCard = ({
 }: LoginInfoCardProps) => {
     return (
         <motion.div
-            className={`flex-1 flex-col items-start justify-center mb-20 lg:flex ${showLoginPage && "hidden"}`}
+            className={`flex-1 flex-col items-start justify-center mb-20 lg:flex ${
+                showLoginPage && "hidden"
+            }`}
             initial={{ x: "-50vw", scale: 0 }}
             animate={{ x: 0, scale: 1 }}
             transition={{
@@ -34,7 +36,10 @@ export const LoginInfoCard = ({
                 Sign in now to take control of your income expenses, and group
                 spending.
             </h3>
-            <Button className=" mt-10 bg-teal-400 hover:bg-teal-500 lg:hidden"  onClick={() => setShowLoginPage(true)}>
+            <Button
+                className=" mt-10 bg-teal-400 hover:bg-teal-500 lg:hidden"
+                onClick={() => setShowLoginPage(true)}
+            >
                 Let's Go
             </Button>
         </motion.div>

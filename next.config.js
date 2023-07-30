@@ -7,9 +7,7 @@ const nextConfig = {
         ignoreDuringBuilds: true,
     },
     webpack: (config) => {
-        config.ignoreWarnings = [
-            { module: /node_modules/ },
-        ];
+        config.ignoreWarnings = [{ module: /node_modules/ }];
         config.module.rules.push({
             exclude: /node_modules/,
         });
