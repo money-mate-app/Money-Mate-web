@@ -11,7 +11,7 @@ export default function Auth() {
     const [showLoginPage, setShowLoginPage] = useState(false);
     return (
         <motion.div
-            className="flex justify-center items-center h-screen w-full relative bg-black overflow-hidden p-6 md:p-20 lg:p-44 lg:space-x-28"
+            className="relative flex h-screen w-full items-center justify-center overflow-hidden bg-black p-6 md:p-20 lg:space-x-28 lg:p-44"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{
