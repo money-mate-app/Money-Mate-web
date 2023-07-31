@@ -25,9 +25,9 @@ export default function Login({ showLoginPage, setShowLoginPage }: LoginProps) {
         >
             <Card className="z-[2] w-full lg:w-full">
                 <CardHeader className="space-y-1">
-                    <CardTitle className="text-2xl gap-2">
+                    <CardTitle className="gap-2 text-2xl">
                         Sign in with
-                        <span className="text-2xl text-teal-300 ml-2">
+                        <span className="ml-2 text-2xl text-teal-300">
                             MoneyMate
                         </span>
                     </CardTitle>

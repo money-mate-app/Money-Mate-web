@@ -14,7 +14,7 @@ export const LoginInfoCard = ({
 }: LoginInfoCardProps) => {
     return (
         <motion.div
-            className={`flex-1 flex-col items-start justify-center mb-20 lg:flex ${
+            className={`mb-20 flex-1 flex-col items-start justify-center lg:flex ${
                 showLoginPage && "hidden"
             }`}
             initial={{ x: "-50vw", scale: 0 }}
@@ -23,16 +23,16 @@ export const LoginInfoCard = ({
                 duration: 0.5,
             }}
         >
-            <div className="ml-[-0.75rem] lg:mb-[-1.5rem] aspect-square h-[150px]">
+            <div className="ml-[-0.75rem] aspect-square h-[150px] lg:mb-[-1.5rem]">
                 <Image src={Logo} alt="Money mate logo" />
             </div>
-            <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-teal-300">
+            <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight text-teal-300 lg:text-5xl">
                 Join MoneyMate
             </h1>
-            <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight leading-snug lg:text-5xl mt-3">
+            <h1 className="mt-3 scroll-m-20 text-4xl font-extrabold leading-snug tracking-tight lg:text-5xl">
                 For a smarter financial journey.
             </h1>
-            <h3 className="scroll-m-20 text-2xl tracking-tight mt-10 text-muted-foreground">
+            <h3 className="mt-10 scroll-m-20 text-2xl tracking-tight text-muted-foreground">
                 Sign in now to take control of your income expenses, and group
                 spending.
             </h3>
