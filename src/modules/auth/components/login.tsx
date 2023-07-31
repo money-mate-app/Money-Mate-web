@@ -17,6 +17,12 @@ type LoginProps = {
 };
 
 export default function Login({ showLoginPage, setShowLoginPage }: LoginProps) {
+    const loginUrl = `https://www.facebook.com/v16.0/dialog/oauth?client_id=${
+    process.env.NEXT_PUBLIC_FACEBOOK_APP_ID
+    }&redirect_uri=${encodeURI(
+    `${process.env.NEXT_PUBLIC_CLIENT_URL}/api/auth/callback/facebook`
+    )}`;
+
     return (
         <div
             className={`flex-1 justify-start ${
@@ -37,14 +43,18 @@ export default function Login({ showLoginPage, setShowLoginPage }: LoginProps) {
                 </CardHeader>
                 <CardContent className="grid gap-4">
                     <div className="grid grid-cols-1 gap-6">
-                        <Button variant="outline">
+                        <Button
+                            variant="outline"
+                        >
                             <Icons.google className="mr-2 h-4 w-4" />
                             Sign in with Google
                         </Button>
-                        <Button variant="outline">
+                        <a href={loginUrl}>
+                        <Button variant="outline" >
                             <Icons.microsoft className="mr-2 h-4 w-4" />
                             Sign in with Microsoft
                         </Button>
+                        </a>
                         <Button variant="outline">
                             <Icons.facebook className="mr-2 h-4 w-4" />
                             Sign in with Facebook
