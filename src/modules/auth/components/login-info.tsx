@@ -24,7 +24,12 @@ export const LoginInfoCard = ({
             }}
         >
             <div className="ml-[-0.75rem] aspect-square h-[150px] lg:mb-[-1.5rem]">
-                <Image src={Logo} alt="Money mate logo" />
+                <Image
+                    src={Logo}
+                    alt="Money mate logo"
+                    blurDataURL={"/img/logo.png"}
+                    priority
+                />
             </div>
             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight text-teal-300 lg:text-5xl">
                 Join MoneyMate
