@@ -65,7 +65,7 @@ export default function Login({ showLoginPage, setShowLoginPage }: LoginProps) {
                         <Input
                             id="email"
                             type="email"
-                            placeholder="m@example.com"
+                            placeholder="abc@example.com"
                         />
                     </div>
                 </CardContent>

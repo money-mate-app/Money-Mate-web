@@ -8,7 +8,7 @@ import SocketProvider from "./SocketProvider";
 export function Providers({ children }: { children: ReactNode }) {
     return (
         <QueryClientProvider client={queryClient}>
-            {__DEV__ && <ReactQueryDevtools />}
+            {/* {__DEV__ && <ReactQueryDevtools />} */}
             <SocketProvider>{children}</SocketProvider>
         </QueryClientProvider>
     );

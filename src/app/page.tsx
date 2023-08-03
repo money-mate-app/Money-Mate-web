@@ -1,4 +1,7 @@
-import Link from "next/link";
-export default function Home() {
-    return <Link href={"/auth"}>Home</Link>;
-}
+import dynamic from "next/dynamic";
+
+const Home = dynamic(() => import("@/modules/home"), {
+    ssr: false,
+});
+
+export default Home;
