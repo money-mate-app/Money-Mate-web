@@ -4,6 +4,7 @@ export const SERVER_MODE = typeof window === undefined;
 export const env = {
     __DEV__: process.env.NODE_ENV !== "production",
     NEXT_PUBLIC_SERVER_URL: process.env.NEXT_PUBLIC_SERVER_URL!,
+    NEXT_PUBLIC_NEXTAUTH_SECRET: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET!,
     NEXT_PUBLIC_GOOGLE_CLIENT_ID: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID!,
     NEXT_PUBLIC_GOOGLE_CLIENT_SECRET:
         process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET!,
@@ -20,6 +21,11 @@ z.object({
             required_error: "Server URL is required",
         })
         .min(10, "Please provide a valid URL"),
+    NEXT_PUBLIC_NEXTAUTH_SECRET: z
+        .string({
+            required_error: "Next Auth Secret is required",
+        })
+        .min(10, "Please provide a valid Next Auth Secret"),
     NEXT_PUBLIC_GOOGLE_CLIENT_ID: z
         .string({
             required_error: "Google Client ID is required",

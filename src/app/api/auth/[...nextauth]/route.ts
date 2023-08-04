@@ -19,6 +19,7 @@ export const authOptions: NextAuthOptions = {
             clientSecret: env.NEXT_PUBLIC_GITHUB_APP_SECRET as string,
         }),
     ],
+    secret: env.NEXT_PUBLIC_NEXTAUTH_SECRET,
     callbacks: {
         async signIn({ user, account, profile, email, credentials }) {
             console.log("User data:", user);
