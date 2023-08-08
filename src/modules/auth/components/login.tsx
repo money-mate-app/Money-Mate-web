@@ -14,6 +14,9 @@ import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { OtpForm } from "./otp-form";
+import { AiFillGithub } from "react-icons/ai";
+import { FaDiscord } from "react-icons/fa";
+import { useSendOtp } from "../services/otp";
 
 type LoginProps = {
     showLoginPage: boolean;
@@ -22,11 +25,17 @@ type LoginProps = {
 
 export default function Login({ showLoginPage, setShowLoginPage }: LoginProps) {
     const [showOtpPage, setShowOtpPage] = useState(false);
-    // const [email, setEmail] = useState("");
-    // const sendLoginVerification = (e: any) => {
-    //     e.preventDefault();
-    // };
-    if (showOtpPage) return <OtpForm setShowOtpPage={setShowOtpPage} />;
+    const [email, setEmail] = useState("");
+    const sendOtpMutation = useSendOtp();
+
+    async function handleClick() {
+        await sendOtpMutation.mutateAsync({ email });
+        setShowOtpPage(true);
+    }
+
+    if (showOtpPage)
+        return <OtpForm email={email} setShowOtpPage={setShowOtpPage} />;
+
     return (
         <motion.div
             className={`flex-1 justify-start ${
@@ -68,18 +77,18 @@ export default function Login({ showLoginPage, setShowLoginPage }: LoginProps) {
                                 signIn("github");
                             }}
                         >
-                            <Icons.microsoft className="mr-2 h-4 w-4" />
-                            Sign in with Microsoft
+                            <AiFillGithub className="mr-2 h-4 w-4" />
+                            Sign in with Github
                         </Button>
 
                         <Button
                             variant="outline"
                             onClick={() => {
-                                signIn("facebook");
+                                signIn("discord");
                             }}
                         >
-                            <Icons.facebook className="mr-2 h-4 w-4" />
-                            Sign in with Facebook
+                            <FaDiscord className="mr-2 h-4 w-4" />
+                            Sign in with Discord
                         </Button>
                     </div>
                     <div className="relative">
@@ -98,17 +107,22 @@ export default function Login({ showLoginPage, setShowLoginPage }: LoginProps) {
                             id="email"
                             type="email"
                             placeholder="abc@example.com"
+                            name="email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                            disabled={sendOtpMutation.isLoading}
                         />
                     </div>
                 </CardContent>
                 <CardFooter>
                     <Button
                         className="w-full"
-                        onClick={() => {
-                            setShowOtpPage(true);
-                        }}
+                        onClick={handleClick}
+                        disabled={sendOtpMutation.isLoading}
                     >
-                        Sign in
+                        {sendOtpMutation.isLoading
+                            ? "Sending OTP..."
+                            : "Sign In"}
                     </Button>
                 </CardFooter>
             </Card>

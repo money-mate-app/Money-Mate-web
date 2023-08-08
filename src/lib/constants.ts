@@ -13,6 +13,8 @@ export const env = {
         process.env.NEXT_PUBLIC_FACEBOOK_APP_SECRET!,
     NEXT_PUBLIC_GITHUB_APP_ID: process.env.NEXT_PUBLIC_GITHUB_APP_ID!,
     NEXT_PUBLIC_GITHUB_APP_SECRET: process.env.NEXT_PUBLIC_GITHUB_APP_SECRET!,
+    NEXT_PUBLIC_DISCORD_APP_ID: process.env.NEXT_PUBLIC_DISCORD_APP_ID!,
+    NEXT_PUBLIC_DISCORD_APP_SECRET: process.env.NEXT_PUBLIC_DISCORD_APP_SECRET!,
 };
 
 z.object({
@@ -52,6 +54,16 @@ z.object({
         })
         .min(10, "Please provide a valid Github App ID"),
     NEXT_PUBLIC_GITHUB_APP_SECRET: z
+        .string({
+            required_error: "Github App Secret is required",
+        })
+        .min(10, "Please provide a valid Github App Secret"),
+    NEXT_PUBLIC_DISCORD_APP_ID: z
+        .string({
+            required_error: "Github App ID is required",
+        })
+        .min(10, "Please provide a valid Github App ID"),
+    NEXT_PUBLIC_DISCORD_APP_SECRET: z
         .string({
             required_error: "Github App Secret is required",
         })
