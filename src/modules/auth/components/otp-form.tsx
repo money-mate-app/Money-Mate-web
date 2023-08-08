@@ -13,13 +13,28 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import OtpInput from "react-otp-input";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { useSendOtp, useVerifyOtp } from "../services/otp";
 
 type Props = {
+    email: string;
     setShowOtpPage: (showOtpPage: boolean) => void;
 };
 
-export function OtpForm({ setShowOtpPage }: Props) {
+export function OtpForm({ email, setShowOtpPage }: Props) {
     const [otp, setOtp] = useState("");
+    const verifyOtpMutation = useVerifyOtp();
+    const sendOtpMutation = useSendOtp();
+
+    function handleResendOtp() {
+        sendOtpMutation.mutate({ email });
+    }
+
+    function handleVerifyOtp() {
+        verifyOtpMutation.mutate({
+            email,
+            otp,
+        });
+    }
 
     return (
         <motion.div
@@ -49,7 +64,7 @@ export function OtpForm({ setShowOtpPage }: Props) {
                         </span>
                     </CardTitle>
                     <CardDescription>
-                        We have sent a OTP to your email ba**@dipainhouse.com
+                        We have sent a OTP to your email {email}
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="grid gap-4 pb-3">
@@ -60,6 +75,8 @@ export function OtpForm({ setShowOtpPage }: Props) {
                             type="email"
                             placeholder="m@example.com"
                             className="mb-4 mt-1"
+                            value={email}
+                            disabled
                         />
                         <OtpInput
                             value={otp}
@@ -75,20 +92,47 @@ export function OtpForm({ setShowOtpPage }: Props) {
                                 width: "3rem",
                                 height: "3rem",
                             }}
-                            renderInput={({ className, ...rest }) => (
-                                <Input name="" id="" {...rest} />
+                            renderInput={({
+                                className,
+                                onChange: onInputChange,
+                                ...rest
+                            }) => (
+                                <Input
+                                    name=""
+                                    id=""
+                                    pattern="[0-9]{1}"
+                                    onChange={(e) => {
+                                        e.target.value = e.target.value.replace(
+                                            /[^0-9]/g,
+                                            "",
+                                        );
+
+                                        onInputChange(e);
+                                    }}
+                                    {...rest}
+                                />
                             )}
                         />
                     </div>
 
-                    <Button className="mt-2 w-full">Verify</Button>
+                    <Button
+                        className="mt-2 w-full"
+                        onClick={handleVerifyOtp}
+                        disabled={verifyOtpMutation.isLoading}
+                    >
+                        {verifyOtpMutation.isLoading
+                            ? "Verifying..."
+                            : "Verify"}
+                    </Button>
                 </CardContent>
                 <CardFooter className="flex justify-center">
                     <CardDescription className="bg-background px-2 text-muted-foreground">
-                        Didn't recieve code?
+                        Didn't receive code?
                         <Button
                             variant={"link"}
                             className="ml-2 p-0 text-teal-300"
+                            onClick={handleResendOtp}
+                            disabled={sendOtpMutation.isLoading}
                         >
                             Resend
                         </Button>

@@ -20,3 +20,11 @@ export function lazyImport<
 
 // Usage
 // const { Home } = lazyImport(() => import("./Home"), "Home");
+
+export function extractErrorMessage(err: any): string {
+    if (err.length > 0) {
+        return err[0].message;
+    }
+
+    return err.message;
+}
