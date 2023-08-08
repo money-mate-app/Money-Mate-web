@@ -2,6 +2,7 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 import GithubProvider from "next-auth/providers/github";
+import DiscordProvider from "next-auth/providers/discord";
 import { env } from "@/lib/constants";
 
 export const authOptions: NextAuthOptions = {
@@ -17,6 +18,10 @@ export const authOptions: NextAuthOptions = {
         GithubProvider({
             clientId: env.NEXT_PUBLIC_GITHUB_APP_ID as string,
             clientSecret: env.NEXT_PUBLIC_GITHUB_APP_SECRET as string,
+        }),
+        DiscordProvider({
+            clientId: env.NEXT_PUBLIC_DISCORD_APP_ID as string,
+            clientSecret: env.NEXT_PUBLIC_DISCORD_APP_SECRET as string,
         }),
     ],
     secret: env.NEXT_PUBLIC_NEXTAUTH_SECRET,
